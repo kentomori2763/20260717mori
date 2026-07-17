@@ -1,0 +1,130 @@
+p{
+  text-align:center;
+}
+
+.container{
+  text-align:center;
+}
+
+h1{
+  background-color:#4F6F12;
+  color:#FFFFF0;
+  text-align:center;
+  margin:0 100px;
+}
+
+/* エリアボタン */
+.AreaNoShosai a{
+  padding:5px;
+  width:130px;
+  display:inline-block;
+  color:white;
+  background-color:#7A5C1F;
+  border-radius:4px;
+  text-decoration:none;
+  margin-right:10px;
+  margin-bottom:10px;
+  font-size:20px;
+  text-align:center;
+  opacity:0.8;
+}
+
+.AreaNoShosai a:hover{
+  opacity:1;
+}
+
+.AreaNoShosai p{
+  font-size:20px;
+}
+
+/* 都道府県ボタン */
+.PrefTitle{
+  display:inline-block;
+  cursor:pointer;
+  color:white;
+  background-color:#7A5C1F;
+  padding:4px 8px;
+  margin-right:8px;
+  border-radius:4px;
+  text-align:center;
+}
+
+/* テーブル共通 */
+table,
+th,
+td{
+  border:2px solid gray;
+  border-collapse:collapse;
+}
+
+.mountains-list,
+.favoriteTable{
+  width:1000px;
+  margin:20px auto;
+  table-layout:fixed;
+}
+
+/* 百名山一覧 */
+.top-label{
+  background:#758F93;
+  color:white;
+  font-weight:bold;
+}
+
+.mountains-list td{
+  width:140px;
+}
+
+/* 文字位置 */
+td{
+  text-align:left;
+}
+
+.list{
+  text-align:right;
+}
+
+.list-center,
+.favorite{
+  text-align:center;
+}
+
+/* お気に入りボタン */
+.favorite button{
+  background-color:DarkGray;
+  color:#CFAE3D;
+  font-size:24px;
+  font-weight:bold;
+  cursor:pointer;
+  border:none;
+  border-radius:4px;
+  padding:4px 8px;
+  margin:4px;
+  opacity:0.7;
+}
+
+.favorite button:hover{
+  opacity:1;
+}
+
+/* お気に入り一覧 */
+.favoriteTablelabel{
+  background-color:#4F6F12;
+  color:#FFFFF0;
+}
+
+.favoriteTable th:last-child,
+.favoriteTable td:last-child{
+  width:120px;
+  text-align:center;
+}
+
+.favoriteTable button{
+  background-color:DarkGray;
+  color:white;
+  border:none;
+  border-radius:4px;
+  padding:6px 12px;
+  cursor:pointer;
+  margin:4px;
+}

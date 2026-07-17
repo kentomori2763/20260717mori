@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>百名山お天気情報_森建登</title>
+    <link rel='stylesheet' href='https://unpkg.com/@mdi/font@6.x/css/materialdesignicons.min.css'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900'>
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/vuetify@3.6.11/dist/vuetify.min.css'><link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <div id="app">
+  <v-app>
+    <div class=background >
+      <h1>百名山 お天気情報</h1>
+      <v-tabs v-model="tab" align-tabs="center">
+        <v-tab value="mountains"> 
+          百名山一覧
+        </v-tab>
+        <v-tab value="favorites"> 
+          お気に入り一覧
+        </v-tab>
+      </v-tabs>
+        <div class="top-wrapper">
+          <div class="container">
+            <div class="Area">
+              <div class="area-contents">
+                <div v-show="tab==='mountains'">
+                <div class="AreaNoShosai">
+                  <p>エリアから都道府県を選択して下さい</p>
+                  <a href="#" @click.prevent="selectedArea='北海道'">北海道</a>
+                  <a href="#"
+                     @click.prevent="selectedArea='東北'">東北</a>
+                  <a href="#" @click.prevent="selectedArea='北陸'">北陸</a>
+                  <a href="#" @click.prevent="selectedArea='関東・甲信越'">関東・甲信越</a><br>
+                  <a href="#" @click.prevent="selectedArea='東海'">東海</a>
+                  <a href="#" @click.prevent="selectedArea='近畿'">近畿</a>
+                  <a href="#" @click.prevent="selectedArea='中国'">中国</a>
+                  <a href="#" @click.prevent="selectedArea='四国'">四国</a>
+                  <a href="#" @click.prevent="selectedArea='九州・沖縄'">九州・沖縄</a><br>
+                </div>
+                <ul>
+                  <li class="PrefTitle" v-for="pref in currentPrefectures"  :key="pref.id"  @click="selectPrefecture(pref)">
+                    {{ pref.title }}</li>
+                </ul>
+                <div v-if="loading" class="loading">読み込み中...
+                </div>
+                <div v-else>
+                  <div v-if="selectedPrefecture">
+                    <h2>{{selectedPrefecture}}の百名山一覧</h2>
+                    <h3></h3>
+                    <div v-if="mountains.length==0">
+                      この都道府県に百名山はありません。
+                    </div>
+                    <div v-else>
+                      <table border="1" class="mountains-list">
+                        <thead>
+                          <tr class="top-label">
+                            <th>山名</th>
+                            <th>都道府県</th>
+                            <th>標高</th>
+                            <th>気温</th>
+                            <th>風速</th>
+                            <th>降水量(mm)</th>
+                            <th>登山指数</th>
+                            <th>お気に入り</th>
+                          </tr>   
+                        </thead>
+                        <tbody>
+                          <tr v-for="mountain in mountains" :key="mountain.name">
+
+                            <td>{{mountain.name}}</td>
+                            <td>{{mountain.prefecture.join()}}</td>
+                            <td class="list">{{mountain.elevation}} m</td>
+                            <td class="list">{{mountain.temperature}} °C</td>
+                            <td class="list">{{mountain.wind}} km/h </td>
+                            <td class="list">{{mountain.rain}} mm</td>
+                            <td class="list-center">{{mountain.rank}}</td>
+                            <td class="list favorite">
+                              <button v-on:click="favoriteM(mountain)">
+                                ★
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div> <!-- v-else -->
+                  </div> <!-- selectedPrefecture -->
+                </div><!-- v-else -->
+              </div>
+              <div v-show="tab==='favorites'">
+                <h2>お気に入り一覧</h2>
+
+                <table class="favoriteTable">
+                  <thead>
+                    <tr class="favoriteTablelabel">
+                      <th>山名</th>
+                      <th>都道府県</th>
+                      <th>標高</th>
+                      <th>登山指数</th>
+                      <th class="btnn"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="(favorite,index) in favoriteMountain"
+                        :key="favorite.name">
+                      <td>{{favorite.name}}</td>
+                      <td>{{favorite.prefecture.join()}}</td>
+                      <td class="list">{{favorite.elevation}}m</td>
+                      <td class="list-center">{{favorite.rank}}</td>
+                      <td>
+                        <button v-on:click="deleteFavorite(index)">
+                          削除
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+</div>
+</v-app>
+<p>※登山指数は気温、風速、降水量を元に独自で算出したものです。</p>
+</div>
+<script src="https://unpkg.com/vue@next"></script>    
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/script.js"></script>
+    <script src='https://unpkg.com/vue@3/dist/vue.global.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/vuetify@3.6.11/dist/vuetify.min.js'></script><script  src="./script.js"></script>
+
+  </body>
+  
+</html>
